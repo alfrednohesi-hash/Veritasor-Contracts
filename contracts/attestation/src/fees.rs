@@ -50,7 +50,7 @@ pub struct CollectorRotationProposal {
 
 /// Pending two-phase DAO controller rotation proposal.
 #[contracttype]
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct DaoRotationProposal {
     /// Current DAO contract address.
     pub old_dao: Address,
@@ -75,19 +75,6 @@ pub enum FlatFeeDataKey {
     EpochSnapshot(u64),
     /// Ordered `Vec<u64>` of epochs with persisted snapshots (bounded history).
     EpochHistory,
-}
-
-/// Pending DAO rotation proposal (two-phase rotation).
-///
-/// Written by `propose_dao_rotation`; consumed by `accept_dao_rotation` or
-/// removed by `cancel_dao_rotation`.
-#[contracttype]
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct DaoRotationProposal {
-    /// The DAO contract address being rotated away from.
-    pub old_dao: Address,
-    /// The DAO contract address being rotated to.
-    pub new_dao: Address,
 }
 
 /// Retrieve the current flat fee configuration from instance storage.
